@@ -46,4 +46,25 @@ export const createBookable = async (req: Request, res: Response, next: NextFunc
     }
 };
 
+export const deleteBookable = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const deletedBookable = await Bookable.findByIdAndDelete(req.params.id);
+
+        if (!deletedBookable) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'Bookable not found',
+            });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            message: 'Bookable deleted successfully',
+        });
+    } catch (err) {
+        next(err);
+    }
+};
+
+
 

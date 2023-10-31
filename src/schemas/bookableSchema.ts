@@ -7,6 +7,24 @@ export interface Bookable extends Document {
     address: string;
     longitude: number;
     latitude: number;
+    rating: number; // Add rating field
+    price: number; // Add price field
+    tags: string[]; // Add tags field
+    attendees: number; // Add attendees field
+    amenities: string[]; // Add amenities field
+    location: {
+        address: string;
+        parkingDistance: string;
+        subwayDistance: string;
+        busDistance: string;
+    }; // Add location field with subfields
+    size: number; // Add size field
+    contact_person: {
+        name: string;
+        email: string;
+        phone: string;
+    }; // Add contact_person field
+    breakoutRooms: boolean; // Add breakoutRooms field
 }
 
 const bookableSchema = new mongoose.Schema<Bookable>({
@@ -32,6 +50,51 @@ const bookableSchema = new mongoose.Schema<Bookable>({
     },
     latitude: {
         type: Number,
+        required: true
+    },
+    rating: {
+        type: Number,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    tags: {
+        type: [String],
+        required: true
+    },
+    attendees: {
+        type: Number,
+        required: true
+    },
+    amenities: {
+        type: [String],
+        required: true
+    },
+    location: {
+        type: {
+            address: String,
+            parkingDistance: String,
+            subwayDistance: String,
+            busDistance: String
+        },
+        required: true
+    },
+    size: {
+        type: Number,
+        required: true
+    },
+    contact_person: {
+        type: {
+            name: String,
+            email: String,
+            phone: String
+        },
+        required: true
+    },
+    breakoutRooms: {
+        type: Boolean,
         required: true
     }
 });

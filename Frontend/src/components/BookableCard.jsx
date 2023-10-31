@@ -56,17 +56,27 @@ const BookableCard = () => {
         <div className="bookable-card">
             <div className="bookable-heart"></div>
             <div className="bookable-image-container">
-                <img className="bookable-image" src={bookable.images[0]} alt={bookable.name} />
+                <div className="image-wrapper">
+                <div className="bookable-image-container">
+        <img
+            className="bookable-image"
+            src={bookable.images[0]}
+            alt={bookable.name}
+            width="289"
+            height="190" // Adjust this value as needed
+        />
+    </div>
+                </div>
             </div>
             <div className="bookable-details">
                 <div className="bookable-info">
                     <div className="bookable-info-left">
                         <p className="bookable-address">{bookable.address}</p>
-                        {/* <p className="bookable-capacity"> {bookable.capacity}</p> */}
-                        {/* <p className="bookable-price">{bookable.price} SEK/h</p> */}
+                        <p className="bookable-capacity"> {bookable.attendees}</p>
+                        <p className="bookable-price">{bookable.price} SEK/h</p>
                     </div>
                     <div className="bookable-info-right">
-                        {/* <p className="bookable-rating">{bookable.rating} </p> */}
+                        <p className="bookable-rating">{bookable.rating} </p>
                     </div>
                 </div>
             </div>
