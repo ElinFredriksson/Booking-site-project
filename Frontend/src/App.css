@@ -38,9 +38,9 @@ body {
 }
 
 .section-headline{
-margin-left: 13%;
+margin-left: 12%;
 
- } 
+} 
 
 button {
   cursor: pointer;
@@ -72,7 +72,7 @@ text-transform: uppercase;
   justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
-  padding: 0 5rem;
+  padding: 0 7rem 0 2.5rem;
 }
 
 .site-title img {
@@ -86,7 +86,7 @@ text-transform: uppercase;
   margin: 0;
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   margin-top: 36px;
 }
 
@@ -97,6 +97,12 @@ text-transform: uppercase;
   display: flex;
   align-items: center;
   padding: .25rem;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+
 }
 
 .nav li.active {
@@ -127,37 +133,179 @@ text-transform: uppercase;
 
 }
 
+/* Modals */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-header{
+ text-align: center;
+}
+
+.modal-content {
+  background-color: var(--divider);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 935px;
+  max-height: 456px;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+  margin-bottom: 10px;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal form .form-group {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.modal form .form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.modal form input {
+  width: 680px;
+  padding: 10px;
+  margin-bottom: 10px;
+  /* border: 1px solid #ccc; */
+  background-color: var(--inputs);
+  border-radius: 5px;
+}
+.modal .button-group {
+  display: flex;
+  align-items: center;
+}
+.modal .button-group button {
+  margin-right: 10px; /* Adjust the spacing between buttons if needed */
+}
+
+.modal form button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--pink);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal form button:hover {
+  background-color: #0056b3;
+}
+
+
+
+.modal p button {
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: inherit; 
+ }
+
+.modal p button:hover {
+  text-decoration: none;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal form .form-label {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.modal form .form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: var(--inputs);
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  
+}
+
+.modal p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal p button {
+  margin: 0;
+}
+
+
+.modal form .form-input {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.signup-button{
+  max-width: 680px;
+}
+
+
+
 /* CTA-Box */
 .dropdown-group {
   display: inline-block;
   vertical-align: top;
-  margin-right: 20px;
+  margin-right: 30px;
 }
 
 .cta-box {
   max-width: 1020px;
   margin: 0 auto;
-  /* background: linear-gradient(180deg, #121212 0%, rgba(18, 18, 18, 0) 51.04%, #121212 100%);
-   */
-  background-color: var(--contrast);
+  background-color: rgba(37, 37, 37, 0.72);
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-  margin-top: 3rem;
+  margin-top: 4rem;
 }
 
 .cta-heading {
   font-size: 2rem;
   font-weight: 700;
   color: #fff;
-  margin-top: 2rem;
+  margin-top: 3rem;
   font-family: DM Sans;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .dropdown-label {
-  
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
   margin-bottom: 5px;
   display: block;
   text-align: left;
@@ -166,15 +314,18 @@ text-transform: uppercase;
 
 .dropdown {
   width: 280px;
+  height: 50px;
   padding: 10px;
   font-size: 1rem;
   background-color: var(--inputs);
   color: #fff;
+  border-radius: 8px;
+  border: none;
 }
 
 .cta-button-container {
   text-align: right;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .cta-button {
@@ -198,19 +349,22 @@ text-transform: uppercase;
 /* Slogan */
 
 .slogan-container{
- display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 4rem 0;
+  margin: 5rem 0;
 }
 
 .slogan-sub {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  margin: 0;
-  font-family: DM Sans;
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  /* line-height: 34px; */
+  color: #ffffff;
+  margin-top: 5px;
+
 }
 
 
@@ -219,7 +373,7 @@ text-transform: uppercase;
 .bookable-card {
   width: 289px;
   height: 289px;
-  max-width: 100%; /* Set a maximum width if desired */
+  max-width: 100%; 
   max-height: 100%;
   position: relative;
   background: #2F2F2F;
@@ -236,6 +390,7 @@ text-transform: uppercase;
   /* background: red; */
   color: #fff;
   padding: 3px 10px;
+  z-index: 1;
 }
 
 .bookable-image-container {
@@ -275,7 +430,7 @@ text-transform: uppercase;
   color: #fff;
 }
 
-.bookable-info-left,
+
 .bookable-info-right {
   flex: 1;
 }
@@ -299,23 +454,31 @@ text-transform: uppercase;
 }
 
 .bookable-address {
-  font-size: 15px;
-  font-weight: 700;
- 
+font-family: 'DM Sans';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 24px;
+color: #FFFFFF;
 }
 
-.bookable-capacity{
-  font-size: 14px;
- 
+.bookable-capacity
+.bookable-price {
+font-family: 'DM Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 24px;
+color: #FFFFFF;
 }
 
 .bookable-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 27px;
+  gap: 35px;
   /* justify-content: space-between; */
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 

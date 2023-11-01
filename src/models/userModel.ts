@@ -10,6 +10,13 @@ import * as dotenv from 'dotenv';
 export const signup = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { firstName, lastName, email, password } = req.body;
+        
+        // Check if email already exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ error: 'Email already in use' });
+        }
+
         const hashedPassword = await bcrypt.hash(password, 12);
         const newUser = await User.create({
             firstName,
@@ -32,7 +39,9 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
     }
 };
 
+
 export const login = async (req: Request, res: Response, next: NextFunction) => {
+    console.log('Received login request');
     try {
         const { email, password } = req.body;
         // Check if email and password exist
