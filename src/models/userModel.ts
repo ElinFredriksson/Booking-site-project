@@ -53,9 +53,10 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return next(new Error('Incorrect email or password'));
         }
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET as string , {
+        const token = jwt.sign({ userId: user._id.toString }, process.env.JWT_SECRET as string , {
             expiresIn: '1h',
         });
+        
         res.status(200).json({
             status: 'success',
             data: {
@@ -67,3 +68,19 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         next(err);
     }
 };
+
+export const getUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.status(200).json({
+          status: 'success',
+          data: {
+            user,
+          },
+        });
+      } catch (err) {
+        next(err);
+      }
+};
+
+

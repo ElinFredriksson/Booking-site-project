@@ -1,22 +1,21 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+// // ProtectedRoute.jsx
+// import React from 'react';
+// import { useNavigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
-    const isAuthenticated = !!localStorage.getItem('token');
-    // !! converts to boolean
+// const ProtectedRoute = (Component) => {
+//   const AuthRoute = (props) => {
+//     const isAuthenticated = !!localStorage.getItem('token'); // !! boolean casting
+//     const navigate = useNavigate();
 
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        return isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to="/" />
-        );
-      }}
-    />
-  );
-};
+//     if (isAuthenticated) {
+//       return <Component {...props} />;
+//     } else {
+//       navigate('/login');
+//       return null;
+//     }
+//   };
 
-export default ProtectedRoute;
+//   return AuthRoute;
+// };
+
+// export default ProtectedRoute;

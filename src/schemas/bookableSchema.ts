@@ -12,7 +12,7 @@ export interface Bookable extends Document {
     tags: string[]; // Add tags field
     attendees: number; // Add attendees field
     amenities: string[]; // Add amenities field
-    location: {
+    location: { //Unique identifyer for location
         address: string;
         parkingDistance: string;
         subwayDistance: string;

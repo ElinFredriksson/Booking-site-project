@@ -72,7 +72,8 @@ const Navbar = () => {
         </Link>
         <ul>
           <Link to="/allvenues">All Venues</Link>
-          <Link to="/profile">Profile</Link>
+          <Link to={`/profile/${localStorage.getItem('userId')}`}>Profile</Link>
+
           <li>
         <button onClick={toggleLoginModal}>Login</button>
       </li>
