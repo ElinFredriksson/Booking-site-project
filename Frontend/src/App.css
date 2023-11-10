@@ -350,6 +350,8 @@ button {
   margin-top: 30px;
 }
 
+
+
 .cta-button {
   padding: 10px 32px;
   font-size: 1rem;
@@ -367,6 +369,8 @@ button {
 .cta-button:hover {
   background-color: #0056b3;
 }
+
+
 
 /* Slogan */
 
@@ -575,6 +579,46 @@ color: #FFFFFF;
   border-radius: 8px;
   margin-top: 2rem;
  }
+
+ .date-picker{
+  width: 280px;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 1rem;
+  background-color: var(--inputs);
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+}
+.checkbox-label{
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin-bottom: 5px;
+  /* display: block; */
+  text-align: left;
+}
+
+.info-icon {
+  font-size: 20px;
+  color: #fff;
+  background-color: darkslategray;
+  border-radius: 50%; 
+  padding: 2px 9px;
+  margin-right: 10px;
+  cursor: pointer;
+
+}
+
+.tooltip{
+  position: relative;
+  display: block;
+  border-bottom: 1px dotted black;
+  color: #fff;
+}
 
 
 /* Footer */

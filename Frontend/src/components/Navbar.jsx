@@ -30,10 +30,10 @@ const Navbar = () => {
       const data = await response.json();
   
       if (response.ok) {
-        localStorage.setItem('token', data.token);
-        // Handle successful login (e.g., redirect to protected route)
+        localStorage.setItem('accessToken', data.data.token);
+        
       } else {
-        // Handle login failure (e.g., display error message)
+        throw new Error(data.message);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -72,7 +72,7 @@ const Navbar = () => {
         </Link>
         <ul>
           <Link to="/allvenues">All Venues</Link>
-          <Link to={`/profile/${localStorage.getItem('userId')}`}>Profile</Link>
+          <Link to={`/profile`}>Profile</Link>
 
           <li>
         <button onClick={toggleLoginModal}>Login</button>

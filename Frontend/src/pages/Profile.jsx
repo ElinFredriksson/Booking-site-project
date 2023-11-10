@@ -2,22 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 const Profile = () => {
-  const { id } = useParams();
-  console.log(id);
 
-  if (!id) {
-    return <div>No user ID found</div>;
-  }
 
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
+
     const fetchUserData = async () => {
+      const token = localStorage.getItem('accessToken');
       try {
-        const response = await fetch(`http://localhost:3001/api/users/profile/${id}`, {
+        const response = await fetch(`http://localhost:3001/api/users/profile/`, {
           method: 'GET',
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         
@@ -32,10 +29,8 @@ const Profile = () => {
       }
     };
 
-    if (id) {
-      fetchUserData();
-    }
-  }, [id]);
+    fetchUserData();
+  },[] );
 
   return (
     <div className="profile">
