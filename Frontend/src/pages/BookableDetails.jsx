@@ -20,9 +20,36 @@ const BookableDetails = () => {
     const [time, setTime] = useState("option1"); // Initialize with an appropriate default value
     const [addCatering, setAddCatering] = useState(false); // Initialize with an appropriate default value
 
+    const [pricePerHour, setPricePerHour] = useState(0); // Set your default price per hour
+    const [cleaningFee, setCleaningFee] = useState(399);
+    const [totalPrice, setTotalPrice] = useState(0);
 
-    
-    
+    const calculateTotalPrice = () => {
+        const hours = calculateHours(); // Calculate the total hours
+        return pricePerHour * hours + cleaningFee;
+      };
+
+    const calculateHours = () => {
+        // Your logic to calculate hours based on the selected time
+        switch (time) {
+          case "option1":
+            return 4; // Set your logic to calculate hours for option1
+          case "option2":
+            return 4; // Set your logic to calculate hours for option2
+          case "option3":
+            return 4; // Set your logic to calculate hours for option3
+          case "option4":
+            return 12; // Set your logic to calculate hours for option3
+          default:
+            return 0;
+        }
+      };
+
+      useEffect(() => {
+        const newTotalPrice = calculateTotalPrice();
+        setTotalPrice(newTotalPrice);
+      }, [time, pricePerHour, cleaningFee]); // Include relevant dependencies
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Submit button clicked');
@@ -47,6 +74,7 @@ const BookableDetails = () => {
             .then(response => response.json())
             .then(data => {
                 setBookable(data.data.bookable); // Update to data.data.bookable
+                setPricePerHour(data.data.bookable.price);
                 setLoading(false);
             })
             .catch(error => {
@@ -88,14 +116,14 @@ const BookableDetails = () => {
         )}
     </div>
 </div>
-
+<div className='bookable-details-container'>
 <div className="booking-details">
       <div className="dropdowns">
       <div className="dropdown-group">
           <label htmlFor="attendees" className="dropdown-label heading2">
             Attendees:
           </label>
-          <select className="dropdown" id="attendees" name="attendees" value={attendees} onChange={(e) => setAttendees(e.target.value)}>
+          <select className="dropdown confirm-booking-dropdown" id="attendees" name="attendees" value={attendees} onChange={(e) => setAttendees(e.target.value)}>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
@@ -109,19 +137,20 @@ const BookableDetails = () => {
           <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-            className="date-picker"
+            className="date-picker confirm-booking-dropdown"
           />
         </div>
         <div className="dropdown-group">
           <label htmlFor="time" className="dropdown-label heading2">
             Time:
           </label>
-          <select className="dropdown" id="time" name="time" value={time} onChange={(e) => setTime(e.target.value)}>
+          <select className="dropdown confirm-booking-dropdown" id="time" name="time" value={time} onChange={(e) => setTime(e.target.value)}>
             <option value="option1">Morning 08 - 12 AM</option>
             <option value="option2">Afternoon 12 - 04 PM</option>
             <option value="option3">Evening 04 - 08 PM</option>
-            <option value="option3">Whole Day 08 AM - 08 PM</option>
+            <option value="option4">Whole Day 08 AM - 08 PM</option>
           </select>
+
         </div>
 
       </div>
@@ -148,14 +177,20 @@ const BookableDetails = () => {
           </div>
         )}
       </div>
-      <div className="cta-button-container">
-        <button className="cta-button button" onClick={handleSubmit}>Submit</button>
+      <div className="price-details">
+          <p>{`SEK ${pricePerHour} x ${calculateHours()} hours`}</p>
+          <p>{`Cleaning Fee: SEK ${cleaningFee}`}</p>
+          <p>{`Total Price: SEK ${calculateTotalPrice()}`}</p>
+        </div>
+      <div className="button-container">
+        <button className="confirm-booking-button" onClick={handleSubmit}>Submit</button>
       </div>
     </div>
-
+</div>
     </>
 
     );
 };
+
 
 export default BookableDetails;

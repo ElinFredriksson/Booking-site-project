@@ -4,6 +4,7 @@ import { faStar, faUserGroup, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom';
 
 const BookableCard = ({ bookable }) => {
+    // console.log('Bookable:', bookable);
     if (!bookable) {
         return <div>No bookable found</div>;
     }

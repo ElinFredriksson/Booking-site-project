@@ -5,6 +5,7 @@ export interface Bookable extends Document {
     description: string;
     images: string[];
     address: string;
+    area: string; // Add area field
     longitude: number;
     latitude: number;
     rating: number; // Add rating field
@@ -41,6 +42,10 @@ const bookableSchema = new mongoose.Schema<Bookable>({
         required: true
     },
     address: {
+        type: String,
+        required: true
+    },
+    area: {
         type: String,
         required: true
     },

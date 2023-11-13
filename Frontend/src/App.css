@@ -571,6 +571,20 @@ color: #FFFFFF;
 
 }
 
+.bookable-details-container{
+  max-width: 568px;
+  max-height: 824px;
+  float: inline-end; /* Center the container horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Adjust as needed */
+  background-color: var(--contrast);
+  padding: 20px; /* Add padding as needed */
+}
+/* .booking-details{
+  
+} */
 
  .GMaps-placeholder{
   width: 100%;
@@ -581,9 +595,9 @@ color: #FFFFFF;
  }
 
  .date-picker{
-  width: 280px;
+  /* width: 280px; */
   height: 50px;
-  padding: 0 10px;
+  /* padding: 0 10px; */
   font-size: 1rem;
   background-color: var(--inputs);
   color: #fff;
@@ -602,6 +616,11 @@ color: #FFFFFF;
   text-align: left;
 }
 
+.confirm-booking-dropdown{
+  width: 462px;
+ /* padding: 0 10px; */
+}
+
 .info-icon {
   font-size: 20px;
   color: #fff;
@@ -618,6 +637,24 @@ color: #FFFFFF;
   display: block;
   border-bottom: 1px dotted black;
   color: #fff;
+}
+
+.price-details{
+ color: #fff;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-booking-button{
+  width: 100%;
+  padding: 10px;
+  
+  
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 

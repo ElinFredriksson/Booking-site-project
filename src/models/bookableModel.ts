@@ -66,5 +66,29 @@ export const deleteBookable = async (req: Request, res: Response, next: NextFunc
     }
 };
 
+export const updateBookable = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const updatedBookable = await Bookable.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body }, // Use $set to update only the fields provided in the request body
+            { new: true, runValidators: true }
+        );
 
+        if (!updatedBookable) {
+            return res.status(404).json({
+                status: 'fail',
+                message: 'Bookable not found',
+            });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                bookable: updatedBookable,
+            },
+        });
+    } catch (err) {
+        next(err);
+    }
+};
 

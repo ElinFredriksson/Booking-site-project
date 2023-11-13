@@ -24,7 +24,7 @@ const ConfirmBooking = () => {
 
   return (
     <div>
-      <h2>Confirm Booking</h2>
+      <h2 className='confirm-booking-h2'>Confirm Booking</h2>
       <div>
         <p>Attendees: {attendees}</p>
         <p>Date: {formattedDate}</p>
@@ -38,6 +38,10 @@ const ConfirmBooking = () => {
           {/* Add other bookable details here */}
         </div>
       )}
+      <div className="buttons">
+        <button>Confirm</button>
+        <button>Cancel</button>
+        </div>
     </div>
   );
 };
