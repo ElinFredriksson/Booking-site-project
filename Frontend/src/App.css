@@ -335,7 +335,7 @@ button {
 }
 
 .dropdown {
-  width: 280px;
+  width: 260px;
   height: 50px;
   padding: 10px;
   font-size: 1rem;
@@ -344,6 +344,8 @@ button {
   border-radius: 8px;
   border: none;
 }
+
+
 
 .cta-button-container {
   text-align: right;
@@ -404,6 +406,7 @@ button {
   position: relative;
   background: #2F2F2F;
   border-radius: 8px ;
+  text-decoration: none;
 }
 
 .bookable-heart {
@@ -415,6 +418,7 @@ button {
   font-weight: 700;
   /* background: red; */
   color: #fff;
+  /* border: 1px solid #fff; */
   padding: 3px 10px;
   z-index: 1;
 }
@@ -509,6 +513,20 @@ color: #FFFFFF;
 
 /* All venues */
 
+.all-venues-filter{
+  max-width: 1243px;
+  margin: 0 auto;
+  background-color: rgba(37, 37, 37, 0.72);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 4rem;
+}
+
+#price{
+  width: 260px;
+}
+
 .all-venues-wrapper{
   max-width: 1400px;
   display: flex;
@@ -523,10 +541,36 @@ color: #FFFFFF;
   /* margin: 0 auto; */
 }
 
+.date-picker-all-venues{
+  width: 260px;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 1rem;
+  background-color: var(--inputs);
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+}
+
+.button-container-all-venues{
+  display: flex;
+  justify-content:end;
+  margin-top: 2rem;
+  border-radius: 8px;
+  gap: 20px;
+}
+
 .all-bookable-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 35px;
+}
+
+.Load-more{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  align-self: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -594,16 +638,7 @@ color: #FFFFFF;
   margin-top: 2rem;
  }
 
- .date-picker{
-  /* width: 280px; */
-  height: 50px;
-  /* padding: 0 10px; */
-  font-size: 1rem;
-  background-color: var(--inputs);
-  color: #fff;
-  border-radius: 8px;
-  border: none;
-}
+
 .checkbox-label{
   font-family: 'DM Sans';
   font-style: normal;
@@ -618,7 +653,7 @@ color: #FFFFFF;
 
 .confirm-booking-dropdown{
   width: 462px;
- /* padding: 0 10px; */
+ padding: 0 10px;
 }
 
 .info-icon {
@@ -834,9 +869,9 @@ color: #FFFFFF;
   height: 339px;
   margin: 0 auto;
   position: relative;
-display: flex;
-align-items: center;
-margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
 }
 
 .testi-wrapper .testi-arrow{
@@ -868,7 +903,7 @@ margin-top: 2rem;
   grid-auto-flow: column;
   grid-auto-columns: calc((100% / 2 ) - 12px);
   gap: 24px;
-  overflow-x: auto;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
 }

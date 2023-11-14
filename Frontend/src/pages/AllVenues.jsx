@@ -5,7 +5,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const AllVenues = () => {
   const [bookables, setBookables] = useState([]);
-  const [filteredBookables, setFilteredBookables] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showLoadMore, setShowLoadMore] = useState(false);
 
@@ -13,7 +12,9 @@ const AllVenues = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
-  
+  const [filteredBookables, setFilteredBookables] = useState([]);
+
+
 
   const fetchData = async () => {
     try {
@@ -24,30 +25,32 @@ const AllVenues = () => {
       console.log('Data received:', data);
   
       if (data && data.data && Array.isArray(data.data.bookables)) {
-        const newFilteredBookables = data.data.bookables.filter((bookable) => {
-          const attendeesArray = attendees.split('-').map((value) => parseInt(value, 10));
-          
+        let filteredBookables = data.data.bookables;
+  
+        // Filter based on attendees
+        if (attendees !== "") {
+          const attendeesArray = attendees.split('-').map(value => parseInt(value, 10));
           const [min, max] = attendeesArray;
-          const attendeesValid = !isNaN(min) && !isNaN(max);
+          filteredBookables = filteredBookables.filter(bookable => (
+            isNaN(min) || isNaN(max) || (bookable.attendees >= min && bookable.attendees <= max)
+          ));
+        }
   
-          const locationValid = location !== "";
+        // Filter based on location
+        if (location !== "") {
+          filteredBookables = filteredBookables.filter(bookable => bookable.area === location);
+        }
   
-          if (attendeesValid && locationValid) {
-            return bookable.attendees >= min && bookable.attendees <= max && bookable.area === location;
-          } else if (attendeesValid) {
-            return bookable.attendees >= min && bookable.attendees <= max;
-          } else if (locationValid) {
-            return bookable.area === location;
-          } else {
-            return true; // No filters, include all bookables
-          }
-        });
+        // Filter based on price
+        if (price !== "" && !isNaN(price)) {
+          filteredBookables = filteredBookables.filter(bookable => bookable.price <= price);
+        }
   
-        console.log('Filtered bookables:', newFilteredBookables);
+        console.log('Filtered bookables:', filteredBookables);
   
-        setFilteredBookables(newFilteredBookables);
-        setBookables(newFilteredBookables.slice(0, 16));
-        setShowLoadMore(newFilteredBookables.length > 16);
+        setFilteredBookables(filteredBookables);
+        setBookables(filteredBookables.slice(0, 16));
+        setShowLoadMore(filteredBookables.length > 16);
       } else {
         console.error('Unexpected response format:', data);
         // Handle error state, set bookables to an empty array
@@ -66,25 +69,63 @@ const AllVenues = () => {
       setLoading(false);
     }
   };
+  
+  
+  
 
   useEffect(() => {
     fetchData();
-  }, [attendees, location]);
+  }, [attendees, location, price]);
+
+  const filterBookables = () => {
+    return bookables.filter(bookable => {
+      const attendeesArray = attendees.split('-').map(value => parseInt(value, 10));
+      const [min, max] = attendeesArray;
+  
+      const attendeesValid = isNaN(min) || isNaN(max) || (bookable.attendees >= min && bookable.attendees <= max);
+      const locationValid = location === "" || bookable.area === location;
+      const priceValid = isNaN(price) || bookable.price <= price;
+  
+      if (attendeesValid && locationValid && priceValid) {
+        return true;
+      }
+  
+      if (!attendeesValid && locationValid && priceValid) {
+        return true;
+      }
+  
+      if (attendeesValid && !locationValid && priceValid) {
+        return true;
+      }
+  
+      if (attendeesValid && locationValid && !priceValid) {
+        return true;
+      }
+  
+      if (!attendeesValid && !locationValid && priceValid) {
+        return true;
+      }
+  
+      if (!attendeesValid && locationValid && !priceValid) {
+        return true;
+      }
+  
+      if (attendeesValid && !locationValid && !priceValid) {
+        return true;
+      }
+  
+      if (!attendeesValid && !locationValid && !priceValid) {
+        return true;
+      }
+  
+      return false;
+    });
+  };
 
   const handleSubmit = () => {
     setLoading(true);
     console.log('Submitting form...');
     fetchData();
-  };
-
-
-
-  const handleLoadMore = () => {
-    const nextBookables = bookables.length + 16;
-    const remainingBookables = filteredBookables.slice(nextBookables, nextBookables + 16);
-  
-    setBookables((prevBookables) => [...prevBookables, ...remainingBookables]);
-    setShowLoadMore(remainingBookables.length > 0);
   };
 
   const handleReset = () => {
@@ -95,6 +136,14 @@ const AllVenues = () => {
     setLoading(true);
     console.log('Resetting filters...');
     fetchData();
+  };
+
+  const handleLoadMore = () => {
+    const nextBookables = bookables.length + 16;
+    const remainingBookables = filterBookables.slice(nextBookables, nextBookables + 16);
+
+    setBookables((prevBookables) => [...prevBookables, ...remainingBookables]);
+    setShowLoadMore(remainingBookables.length > 0);
   };
 
   if (loading) {
@@ -114,7 +163,7 @@ const AllVenues = () => {
     <DatePicker
       selected={startDate}
       onChange={(date) => setStartDate(date)}
-      className="date-picker allvenues-dropdown"
+      className="date-picker-all-venues allvenues-dropdown"
     />
   </div>
 
@@ -161,8 +210,8 @@ const AllVenues = () => {
   </div>
 
   <div className="dropdown-group">
-    <label htmlFor="price" className="dropdown-label heading2">
-      Price:
+    <label htmlFor="price" className="dropdown-label heading2 input">
+      Price SEK/h (max):
     </label>
     <input
       type="number"
@@ -175,7 +224,7 @@ const AllVenues = () => {
   </div>
 </div>
 
-<div className="button-container">
+<div className="button-container-all-venues">
   <button className="allvenues-button" onClick={handleSubmit}>
     Submit
   </button>
@@ -185,16 +234,23 @@ const AllVenues = () => {
 </div>
 </div>
 
-      <div className='all-venues-wrapper'>
-        <div className="all-venues">
-            <div className="all-bookable-list">
-                {bookables.map(bookable => (
-                    <BookableCard key={bookable._id} bookable={bookable} />
-                ))}
-            </div>
-            {showLoadMore && <button onClick={handleLoadMore}>Load More</button>}
-        </div>
-      </div>
+<div className='all-venues-wrapper'>
+  <div className="all-venues">
+    <div className="all-bookable-list">
+      {filteredBookables.length > 0 ? (
+        filteredBookables.map(bookable => (
+          <BookableCard key={bookable._id} bookable={bookable} />
+        ))
+      ) : (
+        bookables.map(bookable => (
+          <BookableCard key={bookable._id} bookable={bookable} />
+        ))
+      )}
+    </div>
+    {showLoadMore && <button className="Load-more" onClick={handleLoadMore}>Load More</button>}
+  </div>
+</div>
+
       </>
     );
 };
