@@ -525,6 +525,7 @@ color: #FFFFFF;
 
 #price{
   width: 260px;
+  height: 30px;
 }
 
 .all-venues-wrapper{
@@ -591,52 +592,176 @@ color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
+  margin-top: 2rem;
+}
+
+.big-image{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  align-content: center;
 }
 
 .big-image img {
   max-width: 100%;
-  max-height: 400px; /* Adjust the max height as needed */
+  max-height: 425px; 
+  border-radius: 8px;
+  /* flex-direction: column; */
 }
 
 .small-images {
   display: flex;
   justify-content: center;
-  margin-top: 20px; /* Adjust the margin as needed */
+  margin-top: 20px; 
 }
 
 .small-images div {
-  margin: 0 10px; /* Adjust the margin between images as needed */
+  margin: 0 10px; 
 }
 
 .small-images img {
   max-width: 100%;
-  max-height: 100px; /* Adjust the max height of small images as needed */
+  max-height: 100px; 
 
 }
 
 .bookable-details-container{
   max-width: 568px;
   max-height: 824px;
-  float: inline-end; /* Center the container horizontally */
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Adjust as needed */
+  justify-content: space-between; 
   background-color: var(--contrast);
-  padding: 20px; /* Add padding as needed */
+  /* padding: 20px;  */
 }
-/* .booking-details{
+
+.dropdowns-bookable-details{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.dropdowns-bookable-details h2{
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 26px;
+  color: #fff;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.dropdowns-bookable-details h3{
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0 auto;
   
-} */
+}
+
+.date-picker{
+  width: 240px;
+  height: 50px;
+  padding: 0 10px;
+  font-size: 1rem;
+  background-color: var(--inputs);
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+}
 
  .GMaps-placeholder{
-  width: 100%;
-  height: 400px;
+  max-width: 100%;
+  max-height: 425px;
   background-color: #2F2F2F;
   border-radius: 8px;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
  }
+
+ .bookable-details-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns: left and right */
+  gap: 10px; /* Adjust the gap between the columns */
+}
+
+.bookable-details-left {
+  display: flex;
+  flex-direction: column;
+  margin-left: 4rem;
+  max-width: 631px;
+}
+
+.description {
+  /* Add styles for the description section */
+  margin-top: 20px;
+}
+
+.description p{
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+}
+
+.amenities-icons-wrapper{
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  color: #fff;
+  /* gap: 10px; */
+  justify-content: space-around;
+
+}
+
+/* .amenities-icon{
+  /* display: flex; */
+  
+
+/* }  */
+
+.amenities-icon svg{
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.arrangements{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.arrangements img{
+  width: 90px;
+  /* display: flex; */
+  /* flex-direction: row; */
+  
+  
+}
+
+.bookable-details-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 3rem;
+}
 
 
 .checkbox-label{
@@ -686,10 +811,41 @@ color: #FFFFFF;
 .confirm-booking-button{
   width: 100%;
   padding: 10px;
-  
-  
   border-radius: 20px;
   cursor: pointer;
+}
+
+.terms-p{
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.terms-p p span{
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bookable-contact{
+  max-width: 568px;
+  background-image: linear-gradient(254deg, #252525 11.07%, #171717 84.69%);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 2rem;
+  color: #fff;
+  display: flex;
+  gap: 20px;
 }
 
 

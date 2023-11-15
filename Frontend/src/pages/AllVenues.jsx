@@ -219,7 +219,7 @@ const AllVenues = () => {
       name="price"
       value={price}
       onChange={(e) => setPrice(e.target.value)}
-      className="dropdown confirm-booking-dropdown"
+      className="dropdown allvenues-dropdown"
     />
   </div>
 </div>
