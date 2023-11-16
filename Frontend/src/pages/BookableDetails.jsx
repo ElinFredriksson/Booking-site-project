@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import LoginModal from '../components/LoginModal';
+import { useAuth } from '../contexts/AuthContext';
+ 
 import BookableList from '../components/BookableList'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import GMapsPlaceholder from '../assets/GMapsPlaceholder.png'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -14,6 +17,11 @@ import theatre from '../assets/Arrangement-Icons/theatre.png';
 
 
 const BookableDetails = () => {
+  const { isLoggedIn, login } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  
+
     const { id } = useParams();
     const [bookable, setBookable] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -51,28 +59,87 @@ const BookableDetails = () => {
         }
       };
 
+      const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submit button clicked');
+      
+
+    // Check if the user is logged in
+    if (!isLoggedIn) {
+      
+      console.log(!isLoggedIn, 'hejdå');
+      // If not logged in, show the login modal
+      setShowLoginModal(true);
+      return;
+    } else {
+      console.log('hej');
+    }
+
+    // If logged in, proceed with the booking logic
+    console.log('Submit button clicked');
+    // console.log(isLoggedIn, 'Is logged in');
+    // localStorage.getItem('token');
+    console.log(localStorage.getItem('token'));
+    console.log('hej');
+    
+
+
+    
+
+    const bookingDetails = {
+      attendees,
+      date: startDate,
+      time,
+      addCatering,
+    };
+    
+
+    // Use localStorage to store booking details temporarily
+    localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+    
+
+    // Redirect to ConfirmBooking
+    // window.location.href = '/confirm-booking';
+    navigate('/confirm-booking');
+  };
+  console.log('is logged in', isLoggedIn);
+
       useEffect(() => {
         const newTotalPrice = calculateTotalPrice();
         setTotalPrice(newTotalPrice);
       }, [time, pricePerHour, cleaningFee]); 
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Submit button clicked');
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log('Submit button clicked');
+
+    //       // Check if the user is logged in
+    // const { isLoggedIn } = useAuth();
+
+    // if (!isLoggedIn) {
+    //   // If not logged in, show the login modal
+    //   setShowLoginModal(true);
+    //   return;
+    // }
+
+    // // If logged in, proceed with the booking logic
+    // console.log('Submit button clicked');
     
-        const bookingDetails = {
-          attendees,
-          date: startDate,
-          time,
-          addCatering,
-        };
+    //     const bookingDetails = {
+    //       attendees,
+    //       date: startDate,
+    //       time,
+    //       addCatering,
+    //     };
     
-        // Use localStorage to store booking details temporarily
-        localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
+    //     // Use localStorage to store booking details temporarily
+    //     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
     
-        // Redirect to ConfirmBooking
-        window.location.href = '/confirm-booking';
-      };
+    //     // Redirect to ConfirmBooking
+    //     window.location.href = '/confirm-booking';
+    //   };
     
 
     useEffect(() => {
@@ -101,7 +168,7 @@ const BookableDetails = () => {
         return <div>No bookable found</div>;
     }
 
-    console.log(bookable);
+    // console.log(bookable);
 
     return (
         <>
@@ -235,8 +302,9 @@ const BookableDetails = () => {
           <p>{`Total Price: SEK ${calculateTotalPrice()}`}</p>
         </div>
       <div className="button-container">
-        <button className="confirm-booking-button" onClick={handleSubmit}>Submit</button>
+        <button className="confirm-booking-button" onClick={handleSubmit}>BOOK NOW</button>
       </div>
+      {showLoginModal && <LoginModal onLogin={login} onClose={() => setShowLoginModal(false)} />}
       <div className='terms-p'>
         <p>Confirmation and Payment Options to follow.</p>
         <p><span>Terms & Conditions</span> apply.</p>

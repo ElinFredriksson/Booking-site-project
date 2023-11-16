@@ -34,7 +34,7 @@ const CTABox = () => {
           newBookables = newBookables.filter(bookable => bookable.area === location);
         }
   
-        console.log('Filtered bookables:', newBookables);
+        // console.log('Filtered bookables:', newBookables);
   
         setFilteredBookables(newBookables.slice(0, 16));
         setBookables(newBookables.slice(0, 16));

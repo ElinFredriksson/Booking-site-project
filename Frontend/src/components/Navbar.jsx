@@ -4,8 +4,10 @@ import logo from '../assets/logo.png';
 import masthead from '../assets/masthead.jpg';
 import LoginModal from './LoginModal'; // Import the LoginModal component
 import SignupModal from './SignupModal'; // Import the SignupModal component
+import { useAuth } from '../contexts/AuthContext';
 
 const Navbar = () => {
+  const { isLoggedIn, login, signup, logout } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showSignupModal, setShowSignupModal] = useState(false);
 
@@ -19,49 +21,25 @@ const Navbar = () => {
 
   const handleLogin = async (formData) => {
     try {
-      const response = await fetch('http://localhost:3001/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        localStorage.setItem('accessToken', data.data.token);
-        
-      } else {
-        throw new Error(data.message);
-      }
+      await login(formData);
+      // Additional logic after successful login
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error during login:', error);
+      // Handle login error (e.g., show error message to the user)
     }
   };
-  
-  
+
   const handleSignup = async (formData) => {
     try {
-      const response = await fetch('http://localhost:3001/api/users/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Signup failed');
-    }
-  
-      const data = await response.json();
-      console.log(data);
+      await signup(formData);
+      // Additional logic after successful signup
     } catch (error) {
-      // Handle errors (e.g., display error message)
-      console.error('Error:', error);
+      console.error('Error during signup:', error);
+      // Handle signup error (e.g., show error message to the user)
     }
   };
+
+  
   
 
   return (

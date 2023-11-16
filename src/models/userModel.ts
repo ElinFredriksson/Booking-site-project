@@ -46,12 +46,12 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
         const { email, password } = req.body;
         // Check if email and password exist
         if (!email || !password) {
-            return next(new Error('Please provide email and password'));
+            return next(new Error('Please provide email and password') as any);
         }
         // Check if user exists && password is correct
         const user = await User.findOne({ email }).select('+password');
         if (!user || !(await bcrypt.compare(password, user.password))) {
-            return next(new Error('Incorrect email or password'));
+            return next(new Error('Incorrect email or password') as any);
         }
         const token = jwt.sign({ userId: user._id.toString() }, process.env.JWT_SECRET as string , {
             expiresIn: '1h',
@@ -65,9 +65,15 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
             },
         });
     } catch (err) {
-        next(err);
-    }
-};
+        // If the error is already an instance of Error, you can rethrow it
+        if (err instanceof Error) {
+          return next(err);
+        }
+        // Otherwise, handle unexpected errors here
+        console.error('Unexpected error during login:', err);
+        next(new Error('Unexpected error during login') as any);
+      }
+    };
 
 export const getUser = async (req: Request, res: Response, next: NextFunction) => {
     const userId: string = (req as any).user.userId
