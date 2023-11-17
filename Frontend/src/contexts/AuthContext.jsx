@@ -37,7 +37,8 @@ const AuthProvider = ({ children }) => {
         }
 
         setIsLoggedIn(true);
-        // localStorage.setItem('token', data.data.token);
+        localStorage.setItem('token', data.data.token);
+        localStorage.setItem('user', JSON.stringify(data.data.user));
         
     } catch (error) {
         console.error('Error during login:', error);

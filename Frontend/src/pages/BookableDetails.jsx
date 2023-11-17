@@ -46,13 +46,13 @@ const BookableDetails = () => {
     const calculateHours = () => {
         //  logic to calculate hours based on the selected time
         switch (time) {
-          case "option1":
+          case "08-12PM":
             return 4; 
-          case "option2":
+          case "12-04PM":
             return 4; 
-          case "option3":
+          case "04-08PM":
             return 4; 
-          case "option4":
+          case "08AM-08PM":
             return 12; 
           default:
             return 0;
@@ -89,10 +89,12 @@ const BookableDetails = () => {
     
 
     const bookingDetails = {
+      bookable,
       attendees,
       date: startDate,
-      time,
+      time: time,
       addCatering,
+      calculateTotalPrice: totalPrice,
     };
     
 
@@ -102,7 +104,7 @@ const BookableDetails = () => {
 
     // Redirect to ConfirmBooking
     // window.location.href = '/confirm-booking';
-    navigate('/confirm-booking');
+    navigate('/confirm-booking', { state: { token: localStorage.getItem('token') } });
   };
   console.log('is logged in', isLoggedIn);
 
@@ -111,35 +113,7 @@ const BookableDetails = () => {
         setTotalPrice(newTotalPrice);
       }, [time, pricePerHour, cleaningFee]); 
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log('Submit button clicked');
 
-    //       // Check if the user is logged in
-    // const { isLoggedIn } = useAuth();
-
-    // if (!isLoggedIn) {
-    //   // If not logged in, show the login modal
-    //   setShowLoginModal(true);
-    //   return;
-    // }
-
-    // // If logged in, proceed with the booking logic
-    // console.log('Submit button clicked');
-    
-    //     const bookingDetails = {
-    //       attendees,
-    //       date: startDate,
-    //       time,
-    //       addCatering,
-    //     };
-    
-    //     // Use localStorage to store booking details temporarily
-    //     localStorage.setItem('bookingDetails', JSON.stringify(bookingDetails));
-    
-    //     // Redirect to ConfirmBooking
-    //     window.location.href = '/confirm-booking';
-    //   };
     
 
     useEffect(() => {
@@ -240,7 +214,7 @@ const BookableDetails = () => {
             Attendees:
           </label>
           <select className="dropdown confirm-booking-dropdown" id="attendees" name="attendees" value={attendees} onChange={(e) => setAttendees(e.target.value)}>
-            <option value="">Select quantity</option>
+            <option value="" disabled>Select quantity</option>
             <option value="5-10">5-10</option>
             <option value="10-30">10-30</option>
             <option value="30-60">30-60</option>
@@ -263,11 +237,11 @@ const BookableDetails = () => {
             Time:
           </label>
           <select className="dropdown confirm-booking-dropdown" id="time" name="time" value={time} onChange={(e) => setTime(e.target.value)}>
-            <option value="">Select time</option>
-            <option value="option1">Morning 08 - 12 AM</option>
-            <option value="option2">Afternoon 12 - 04 PM</option>
-            <option value="option3">Evening 04 - 08 PM</option>
-            <option value="option4">Whole Day 08 AM - 08 PM</option>
+            <option value="" disabled>Select time</option>
+            <option value="08-12PM">Morning 08 - 12 AM</option>
+            <option value="12-04PM">Afternoon 12 - 04 PM</option>
+            <option value="04-08PM">Evening 04 - 08 PM</option>
+            <option value="08AM-08PM">Whole Day 08 AM - 08 PM</option>
           </select>
 
         </div>

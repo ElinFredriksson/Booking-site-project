@@ -3,9 +3,11 @@ import mongoose, { Document } from 'mongoose';
 export interface Reservation extends Document {
     bookable_id: mongoose.Types.ObjectId;
     user_id: mongoose.Types.ObjectId;
-    start_date: Date;
-    end_date: Date;
+    date: Date;
+    time: String;
+    attendees: String;
     created_at: Date;
+    catering: Boolean;
     total_price: number;
     status: 'pending' | 'confirmed' | 'cancelled';
 }
@@ -21,17 +23,25 @@ const reservationSchema = new mongoose.Schema<Reservation>({
         ref: 'User',
         required: true
     },
-    start_date: {
+    date: {
         type: Date,
         required: true
     },
-    end_date: {
-        type: Date,
+    time: {
+        type: String,
+        required: true
+    },
+    attendees: {
+        type: String,
         required: true
     },
     created_at: {
         type: Date,
         default: Date.now
+    },
+    catering: {
+        type: Boolean,
+        default: false
     },
     total_price: {
         type: Number,

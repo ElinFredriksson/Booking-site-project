@@ -4,14 +4,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
 import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import AllVenues from './pages/AllVenues';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import BookableDetails from './pages/BookableDetails';
 import ConfirmBooking from './pages/ConfirmBooking';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
+import Confirmation from './pages/Confirmation';
 
 
 
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/allvenues" element={<AllVenues />} />
         <Route path="/bookable/:id" element={<BookableDetails />} />
+        <Route path="/confirmation" element={<Confirmation />} />
 
         {/* Protected */}
         <Route
@@ -40,14 +42,22 @@ const App = () => {
               <ConfirmBooking />
               </PrivateRoute> } 
           />
+           <Route 
+            path="/profile"
+            element={ 
+             <PrivateRoute>
+              <Profile />
+               </PrivateRoute> } 
+           />
+          
        
  
-          {/* <PrivateRoute path="/confirm-booking" element={<ConfirmBooking />} /> */}
+          
 
-        {/* <Route path="/profile" element={isAuthenticated ? <Profile /> : <Home />} /> */}
+        
 
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
     </AuthProvider>
   );

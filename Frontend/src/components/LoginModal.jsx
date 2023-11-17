@@ -28,35 +28,7 @@ const LoginModal = ({ onClose, onSignup }) => {
         }
     };
 
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       const response = await fetch('http://localhost:3001/api/users/login', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(formData),
-//       });
-
-//       const data = await response.json();
-
-//       if (response.ok) {
-//         localStorage.setItem('accessToken', data.data.token);
-//         // If login is successful, call the onLogin callback
-//         onLogin();
-//         onClose(); // Close the modal after submission
-//       } else {
-//         throw new Error(data.message);
-//       }
-//     } catch (error) {
-//       console.error('Error:', error);
-//     }
-//   };
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
