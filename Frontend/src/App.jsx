@@ -13,6 +13,7 @@ import ConfirmBooking from './pages/ConfirmBooking';
 import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 import Confirmation from './pages/Confirmation';
+import BookingDetails from './pages/BookingDetails';
 
 
 
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/allvenues" element={<AllVenues />} />
         <Route path="/bookable/:id" element={<BookableDetails />} />
         <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/booking-details/:id" element={<BookingDetails />} />
 
         {/* Protected */}
         <Route
@@ -49,6 +51,7 @@ const App = () => {
               <Profile />
                </PrivateRoute> } 
            />
+          
           
        
  

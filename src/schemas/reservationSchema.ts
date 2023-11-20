@@ -9,6 +9,7 @@ export interface Reservation extends Document {
     created_at: Date;
     catering: Boolean;
     total_price: number;
+    booking_nr: number;
     status: 'pending' | 'confirmed' | 'cancelled';
 }
 
@@ -44,6 +45,10 @@ const reservationSchema = new mongoose.Schema<Reservation>({
         default: false
     },
     total_price: {
+        type: Number,
+        required: true
+    },
+    booking_nr: {
         type: Number,
         required: true
     },

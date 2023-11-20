@@ -23,9 +23,13 @@ export const getAllReservations = async (req: Request, res: Response, next: Next
 
 export const getReservation = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const reservation = await Reservation.findById(req.params.id);
+        const reservation = await Reservation.findById(req.params.id)
+            .populate('bookable_id') 
+            .populate('user_id'); 
+
         res.status(200).json({
             status: 'success',
+            results: reservation ? 1 : 0, // Check if reservation exists
             data: {
                 reservation,
             },
@@ -84,7 +88,10 @@ export const deleteReservation = async (req: Request, res: Response, next: NextF
 
 export const getReservationsByUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const reservations = await Reservation.find({ user_id: req.params.id });
+        const reservations = await Reservation.find({ user_id: req.params.id })
+            .populate('bookable_id') // Populating the bookable reference
+            .populate('user_id'); // Populating the user reference
+
         res.status(200).json({
             status: 'success',
             results: reservations.length,

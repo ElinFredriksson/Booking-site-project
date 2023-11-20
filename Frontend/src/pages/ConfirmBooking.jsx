@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import axios from 'axios';
 
 const getUserFromStorage = () => {
@@ -8,10 +8,13 @@ const getUserFromStorage = () => {
   return user ? JSON.parse(user) : null;
 };
 
-const ConfirmBooking = ({  }) => {
+
+const ConfirmBooking = () => {
   const location = useLocation();
   const [bookingDetails, setBookingDetails] = useState(null);
   const user = getUserFromStorage();
+  const navigate = useNavigate();
+
   useEffect(() => {
     // Retrieve booking details from localStorage
     const storedBookingDetails = localStorage.getItem('bookingDetails');
@@ -38,7 +41,7 @@ const ConfirmBooking = ({  }) => {
   const handleConfirmBooking = async () => {
     try {
       const token = localStorage.getItem('token');
-
+      
 
       if (!location.state || !location.state.token) {
         console.error('Token not found in location state.');
@@ -59,6 +62,7 @@ const ConfirmBooking = ({  }) => {
         created_at: new Date(date),
         catering: addCatering,
         total_price: calculateTotalPrice, 
+        booking_nr: Math.floor(Math.random() * 1000000000),
         status: 'pending',
       };
 
@@ -102,14 +106,15 @@ if (responseData.status === 'success') {
   console.log('Reservation created:', responseData.data.reservation);
 
   // Navigate to the confirmation page
-  window.location.href = '/confirmation'; // Change '/confirmation' to your actual confirmation page path
+  // window.location.href = '/confirmation'; 
+  navigate('/confirmation');
 } else {
   // Handle the case when the reservation creation was not successful
   console.error('Error creating reservation:', responseData);
 }
 
       // Optionally, redirect to a success page or do other actions
-    } catch (error) {
+} catch (error) {
       // Handle errors (e.g., show an error message)
       console.error('Error creating reservation:', error.message);
     }
