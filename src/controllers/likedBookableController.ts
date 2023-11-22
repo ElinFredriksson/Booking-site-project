@@ -3,9 +3,9 @@ import { getAllLikedBookables, getLikedBookablesByUser, likeBookable, unlikeBook
 
 const likedBookablerouter = express.Router();
 
-likedBookablerouter.get('/likedBookables', getAllLikedBookables);
-likedBookablerouter.get('/likedBookables/:userId', getLikedBookablesByUser);
-likedBookablerouter.post('/likedBookables', likeBookable);
-likedBookablerouter.delete('/likedBookables/:userId/:bookableId', unlikeBookable);
+likedBookablerouter.get('/', getAllLikedBookables);
+likedBookablerouter.get('/:userId', getLikedBookablesByUser);
+likedBookablerouter.post('/', likeBookable);
+likedBookablerouter.delete('/:userId/:bookableId', unlikeBookable);
 
 export default likedBookablerouter;

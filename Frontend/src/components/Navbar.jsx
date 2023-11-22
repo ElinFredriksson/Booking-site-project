@@ -39,6 +39,16 @@ const Navbar = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      // Additional logic after successful logout
+    } catch (error) {
+      console.error('Error during logout:', error);
+      // Handle logout error (e.g., show error message to the user)
+    }
+  };
+
   
   
 
@@ -53,7 +63,11 @@ const Navbar = () => {
           <Link to={`/profile`}>Profile</Link>
 
           <li>
-        <button onClick={toggleLoginModal}>Login</button>
+          {isLoggedIn ? (
+              <button className='login-btn' onClick={handleLogout}>Logout</button>
+            ) : (
+              <button className='login-btn' onClick={toggleLoginModal}>Login</button>
+            )}
       </li>
       {showLoginModal && (
         <LoginModal onClose={toggleLoginModal} onLogin={handleLogin} onSignup={toggleSignupModal} />

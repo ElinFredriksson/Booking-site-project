@@ -1,4 +1,5 @@
 import React from 'react';
+import MapContainer from './MapContainer';
 
 const ContactUs = () => {
   return (
@@ -31,7 +32,11 @@ const ContactUs = () => {
           <p>Email: info@techspace.com</p>
           <p>Address: 123 Main Street, Stockholm, 10001</p>
         </div>
-        <div className="GMaps-placeholder">Google Maps</div>
+        <div className="GMaps-placeholder-contact">
+          <MapContainer
+        latitude={59.33195282113755}
+        longitude={18.06175701738835}
+      /></div>
       </div>
     </div>
     </div>

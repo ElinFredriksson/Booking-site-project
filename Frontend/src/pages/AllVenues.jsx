@@ -140,11 +140,15 @@ const AllVenues = () => {
 
   const handleLoadMore = () => {
     const nextBookables = bookables.length + 16;
-    const remainingBookables = filterBookables.slice(nextBookables, nextBookables + 16);
-
+    const remainingBookables = filteredBookables.slice(
+      nextBookables,
+      nextBookables + 16
+    );
+  
     setBookables((prevBookables) => [...prevBookables, ...remainingBookables]);
     setShowLoadMore(remainingBookables.length > 0);
   };
+  
 
   if (loading) {
     return <div>Loading...</div>;
@@ -247,7 +251,7 @@ const AllVenues = () => {
         ))
       )}
     </div>
-    {showLoadMore && <button className="Load-more" onClick={handleLoadMore}>Load More</button>}
+    {/* {showLoadMore && <button className="Load-more" onClick={handleLoadMore}>Load More</button>} */}
   </div>
 </div>
 

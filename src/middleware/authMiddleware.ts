@@ -12,7 +12,7 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
         console.log('User info:', user);
         // Attach the user info to the request for further use
         (req as any).user = user;
-        console.log('User info in request:', (req as any).user);
+        // console.log('User info in request:', (req as any).user);
         next();
     });
 };

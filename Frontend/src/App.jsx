@@ -14,6 +14,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import PrivateRoute from './utils/PrivateRoute';
 import Confirmation from './pages/Confirmation';
 import BookingDetails from './pages/BookingDetails';
+import { LikedBookablesProvider } from './contexts/LikedBookablesContext';
 
 
 
@@ -25,6 +26,7 @@ import BookingDetails from './pages/BookingDetails';
 const App = () => {
   return (
     <AuthProvider>
+      <LikedBookablesProvider>
     <Router>
       <Navbar />
       <Routes>
@@ -51,17 +53,11 @@ const App = () => {
               <Profile />
                </PrivateRoute> } 
            />
-          
-          
-       
- 
-          
-
-        
 
       </Routes>
       <Footer />
     </Router>
+    </LikedBookablesProvider>
     </AuthProvider>
   );
 };

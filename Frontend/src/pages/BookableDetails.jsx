@@ -3,8 +3,9 @@ import LoginModal from '../components/LoginModal';
 import { useAuth } from '../contexts/AuthContext';
  
 import BookableList from '../components/BookableList'
+import MapContainer from '../components/MapContainer';
 import { useNavigate, useParams } from 'react-router-dom';
-import GMapsPlaceholder from '../assets/GMapsPlaceholder.png'
+
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -152,7 +153,14 @@ const BookableDetails = () => {
         {bookable.images && bookable.images.length > 0 && (
           <img src={bookable.images[selectedImage]} alt={`Image ${selectedImage}`} />
           )}
-          <img className='GMaps-placeholder' src={GMapsPlaceholder} alt="Google Maps Placeholder" />
+           <div>
+      <div className="map-container">
+      <MapContainer
+        latitude={bookable.latitude}
+        longitude={bookable.longitude}
+      />
+      </div>
+    </div>
     </div>
     <div className="small-images">
         {bookable.images && bookable.images.length > 0 && (
@@ -167,10 +175,10 @@ const BookableDetails = () => {
 <div className='bookable-details-grid'>
 <div className="bookable-details-left">
         <div className="description">
-        <h1 className='heading2 section-headline'>Information</h1>
+        <h1 id='heading-details' className='heading2 section-headline details'>Information</h1>
           <p>{bookable.description}</p>
 
-          <h1 className='heading2 section-headline'>Amenities</h1>
+          <h1 id='heading-details' className='heading2 section-headline'>Amenities</h1>
           <div className='amenities-icons-wrapper'>
           <div className='amenities-icon'>
           <FontAwesomeIcon icon={faMaximize} />
@@ -190,7 +198,7 @@ const BookableDetails = () => {
           </div>
           </div>
           <p>Our venue is located so that it is accessible to all. We offer catering and many different type of aid so that your tech event will run smoothly. There is always coffee, tea and water available.</p>
-          <h1 className='heading2 section-headline'>Arrangements</h1>
+          <h1 id='heading-details' className='heading2 section-headline'>Arrangements</h1>
           <div className='arrangements'>
 
               <img src={boardroom} alt="boardroom" />
@@ -198,7 +206,7 @@ const BookableDetails = () => {
               <img src={classroom} alt="classroom" />
               <img src={theatre} alt="classroom" />
           </div>
-          <h1 className='heading2 section-headline'>Venue contact</h1>
+          <h1 id='heading-details' className='heading2 section-headline'>Venue contact</h1>
           <p>Do you have questions about this locale or its equipment? Please contact the venue directly.</p>
         </div>
       </div>

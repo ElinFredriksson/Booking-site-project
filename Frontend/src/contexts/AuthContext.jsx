@@ -1,13 +1,16 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [formData, setFormData] = useState({
-  //   email: '',
-  //   password: '',
-  // });
+  
+  useEffect(() => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    setIsLoggedIn(true);
+  }
+}, []);
 
   const login = async (formData) => {
     try {
@@ -67,6 +70,7 @@ const AuthProvider = ({ children }) => {
 
       setIsLoggedIn(true);
       localStorage.setItem('token', data.data.token);
+      localStorage.setItem('user', JSON.stringify(data.data.user));
     } catch (error) {
       console.error('Error during signup:', error);
       throw error; // Propagate the error to handle it in the component
@@ -80,6 +84,7 @@ const AuthProvider = ({ children }) => {
     // Set isLoggedIn to false and remove the token from localStorage
     setIsLoggedIn(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
 
   return (

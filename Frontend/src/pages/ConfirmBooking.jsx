@@ -124,20 +124,44 @@ if (responseData.status === 'success') {
     <div className='confirm-booking-wrapper'>
       <h2 className='confirm-booking-h2'>Confirm Booking</h2>
       <div className='confirm-booking-details'>
+      <div className="left-info-confirm-booking">
+        <h3>Booking Details</h3>
+        <p>Address: {bookable.address}</p>
         <p>Attendees: {attendees}</p>
         <p>Date: {formattedDate}</p>
         <p>Time: {time}</p>
         <p>Add Catering: {addCatering ? 'Yes' : 'No'}</p>
+        <p>Total Price: {calculateTotalPrice}</p>
+        <div className="left-catering-info-box">
+          <h3>Catering Details</h3>
+          <p>If you have chosen catering for this booking, you will be contacted by Catering Company within 2 days. If you are not contacted, let us know at catering@techspace.com.</p>
+        </div>
+      </div>
+      <div className="right-info-confirm-booking">
+        <div className="terms-confirm-booking">
+          <h3>Terms and Conditions</h3>
+          <p>When it comes to cancellations, notify us at least 24 hours to avoid charges. After your meeting,  leave the room in a tidy state and dispose of any trash properly.
+              We expect responsible usage and reporting of any damage. Please aim to start and finish your session as scheduled to avoid overtime charges. Make sure to keep your valuables attended. The number of attendees should not exceed the room's capacity. Kindly inform us in advance if you have specific accessibility requirements so we can make necessary accommodations. There is always staff on scene should you need us. By clicking the "Confirm Booking" button, you agree to the Terms and Conditions of TechSpace.</p>
+          <div className="textarea-confirm-booking">
+            <h3>Anything we need to know? Write down below</h3>
+          <textarea placeholder='Write here ..' name="" id="" cols="30" rows="10"></textarea>
+          </div>
+        </div>
+      </div>
+
+      
+      
+        
       </div>
       {bookable && (
         <div>
-          <h3>Bookable Details</h3>
-          <p>Address: {bookable.address}</p>
+          {/* <h3>Bookable Details</h3> */}
+          
           {/* Add other bookable details here */}
         </div>
       )}
-      <div className="buttons">
-        <button>Cancel</button>
+      <div className="confirm-buttons">
+        <button className='cancel-button'>Cancel</button>
         <button className='confirm-button' onClick={handleConfirmBooking}>CONFIRM BOOKING</button>
         </div>
     </div>
