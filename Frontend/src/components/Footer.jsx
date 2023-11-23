@@ -12,12 +12,12 @@ const Footer = () => {
         <img src={footerLogo} alt="Logo" />
       </div>
       <div className="footer-middle">
-        {/* Four links */}
+        <div className="footer-links">
         <a href="#">All venues</a>
         <a href="#">About us</a>
         <a href="#">Contact</a>
         <a href="#">Log in</a>
-        {/* Social icons */}
+        </div>
         <div className="social-icons">
           {/* <FontAwesomeIcon icon={} />
           <FontAwesomeIcon icon={faInstagram} /> */}

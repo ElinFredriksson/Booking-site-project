@@ -66,7 +66,15 @@ const getUserFromStorage = () => {
       }
     };
       
-      
+    const truncateAddress = (address, maxLength) => {
+      if (address.length > maxLength) {
+        return address.substring(0, maxLength) + '...';
+      }
+      return address;
+    };
+    
+    // Usage:
+    const truncatedAddress = truncateAddress(bookable.address, 25);
 
 
     return (
@@ -91,7 +99,7 @@ const getUserFromStorage = () => {
             <div className="bookable-details">
                 <div className="bookable-info">
                     <div className="bookable-info-left">
-                        <p className="bookable-address">{bookable.address}</p>
+                        <p className="bookable-address">{truncatedAddress}</p>
                         <p className="bookable-capacity"><FontAwesomeIcon icon={faUserGroup} /> {bookable.attendees}</p>
                         <p className="bookable-price">{bookable.price} SEK/h</p>
                     </div>

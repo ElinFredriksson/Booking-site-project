@@ -274,7 +274,7 @@ const BookableDetails = () => {
         </span>
         {showTooltip && (
           <div className="tooltip">
-            If you want to add catering to your booking, you will be contacted by the catering company to discuss your requirements via your email.
+            You will be contacted by the catering company by email.
           </div>
         )}
       </div>
@@ -300,6 +300,9 @@ const BookableDetails = () => {
       </div>
       <div className="bookable-contact-right">
         <h3>Contact Person</h3>
+        <p>{bookable.contact_person.name}</p>
+        <p>{bookable.contact_person.email}</p>
+        <p>{bookable.contact_person.phone}</p>
         </div>
     </div>
 </div>

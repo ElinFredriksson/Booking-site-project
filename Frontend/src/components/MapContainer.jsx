@@ -1,6 +1,10 @@
 
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+// import * as dotenv from 'dotenv';
+// dotenv.config();
+
+// const apiKey = import.meta.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const MapContainer = ({ latitude, longitude }) => {
    const defaultCenter = {
