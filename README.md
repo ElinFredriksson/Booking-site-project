@@ -3,7 +3,7 @@ A school project.
 
 Booking platform designed specifically for tech companies seeking ideal venues for their events.
 
-An elegant booking platform designed specifically for tech companies seeking ideal venues for their events. This project showcases a user-friendly front-end interface, seamlessly connecting tech professionals with top-notch venues. Explore a sleek, intuitive design that enhances the booking experience for both hosts and event organizers.
+An elegant booking platform designed specifically for tech companies seeking ideal venues for their events. This project showcases a user-friendly front-end interface, seamlessly connecting tech professionals with top-notch venues. Explore a sleek, intuitive design that enhances the booking experience.
 
 Key Features:
 
