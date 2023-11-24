@@ -59,7 +59,7 @@ const Testimonials = () => {
                         </div>
                         <div className="testi-text">
                         <h3>John Doe</h3>
-                    <p className='testi-p'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.</p>
+                    <p className='testi-p'>Super nice venue, We are very happy with the place and staff. We will be returning back!</p>
                         </div>
                     </li>
                 ))}

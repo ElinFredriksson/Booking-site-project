@@ -144,7 +144,7 @@ if (responseData.status === 'success') {
               We expect responsible usage and reporting of any damage. Please aim to start and finish your session as scheduled to avoid overtime charges. Make sure to keep your valuables attended. The number of attendees should not exceed the room's capacity. Kindly inform us in advance if you have specific accessibility requirements so we can make necessary accommodations. There is always staff on scene should you need us. By clicking the "Confirm Booking" button, you agree to the Terms and Conditions of TechSpace.</p>
           <div className="textarea-confirm-booking">
             <h3>Anything we need to know? Write down below</h3>
-          <textarea placeholder='Write here ..' name="" id="" cols="30" rows="10"></textarea>
+          <textarea placeholder='' name="" id="" cols="30" rows="10"></textarea>
           </div>
         </div>
       </div>
